@@ -1,0 +1,12 @@
+{
+    "name": "API App",
+    "api": {
+        "routes": "./routes.js",
+        "port": 3000
+    },
+    "db": {
+        "host": "mongo",
+        "port": 27017,
+        "database": "pingbot"
+    }
+}
