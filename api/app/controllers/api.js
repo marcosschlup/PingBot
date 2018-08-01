@@ -2,9 +2,17 @@
 
 module.exports = {
 
-    getPing (req,res) {
+    routePing (req,res) {
 
-        res.json({success: true})
+        if (this.app.config.debug) console.log(`[<--] Receiving`)
+
+        res.json({response: 'pong'})
+
+    },
+
+    routePongTotal (req,res) {
+
+        res.json({total: 0})
 
     }
 

@@ -1,8 +1,9 @@
 {
     "name": "API App",
+    "debug": false,
     "api": {
         "routes": "./routes.js",
-        "port": 3000
+        "port": 80
     },
     "db": {
         "host": "mongo",

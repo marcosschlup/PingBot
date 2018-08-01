@@ -1,0 +1,7 @@
+{
+    "name": "BOT",
+    "debug": false,
+    "use_simple_sender": true,
+    "use_send_pings_on_start": true,
+    "send_pings_on_start_qty": 10000
+}
