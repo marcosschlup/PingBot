@@ -1,19 +1,34 @@
 
+var _ = require('underscore');
 
 module.exports = {
 
     routePing (req,res) {
 
-        if (this.app.config.debug) console.log(`[<--] Receiving`)
+        res.json({response: 'pong'});
 
-        res.json({response: 'pong'})
+        // envia para batch insert
+        this.app.controllers.data.insert({timestamp: Date.now()});
+
+        this.receiveStop();
 
     },
 
     routePongTotal (req,res) {
 
-        res.json({total: 0})
+        this.app.model.pings.countDocuments({},(err,count) => {
+            if (err) return res.json({error: err});
 
-    }
+            res.json({total: count});
+
+        });
+
+    },
+
+    receiveStop: _.debounce(function() {
+
+        this.log(`Stop or delay of pings from bot`);
+
+    },4000)
 
 }

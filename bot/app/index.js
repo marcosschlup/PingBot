@@ -27,9 +27,14 @@ module.exports = {
                 this.createDb(callback);
 
             }],
-            createAPI: ['createDB', (results,callback)=>{
+            loadModel: ['createDB', (results,callback)=>{
 
                 this.createAPI(callback);
+
+            }],
+            createAPI: ['loadModel', (results,callback)=>{
+
+                this.loadModel(callback);
 
             }],
             initControllers: ['createAPI', (results,callback)=>{
@@ -53,6 +58,30 @@ module.exports = {
             .then(() => { this.log(`[db] Connected (${this.config.db.host})`); callback(); })
             .catch((err) => callback(err));
         
+    },
+
+    loadModel (callback) {
+
+        if (!this.config.db || !this.config.db.model) return callback();
+        
+        var schema = mongoose.Schema;
+
+        var models = require(this.config.db.model);
+
+        this.schemas = {};
+        this.model = {};
+
+        _.each(models,(data,name)=>{
+            
+            this.schemas[name] = new schema(data);
+
+            this.model[name] = mongoose.model(name, this.schemas[name]);
+
+        });
+
+        callback();
+
+
     },
     createAPI (callback) {
         
@@ -139,16 +168,19 @@ module.exports = {
         var self = this;
 
         async.parallel(
-            _.reduce(_.keys(this.controllers),(memo,name)=>{
+            _.reduce(_.keys(this.controllers),(memo,name) => {
                 
                 if (self.controllers[name].init) {
+                    
                     memo.push(function(callback) {
-                        self.controllers[name].init.apply(self.controllers[name],[callback]) 
+                        
+                        self.controllers[name].init.apply(self.controllers[name],[callback]);
+
                     });
 
-                    return memo;
-
                 }
+
+                return memo;
 
             },[])
         ,callback);

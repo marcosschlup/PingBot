@@ -1,5 +1,5 @@
 var app = require('./app');
 
-app.loadControllers([ 'api.js' ]);
+app.loadControllers([ 'data.js','api.js' ]);
 
 app.start();

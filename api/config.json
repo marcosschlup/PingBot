@@ -1,6 +1,7 @@
 {
     "name": "API App",
     "debug": false,
+    "db_batch_insert_qty": 40,
     "api": {
         "routes": "./routes.js",
         "port": 80
@@ -8,6 +9,7 @@
     "db": {
         "host": "mongo",
         "port": 27017,
-        "database": "pingbot"
+        "database": "pingbot",
+        "model": "./model.js"
     }
 }

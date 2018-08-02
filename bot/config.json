@@ -1,7 +1,13 @@
 {
     "name": "BOT",
     "debug": false,
-    "use_simple_sender": true,
+    "api_host": "http://api",
+    "api": {
+        "routes": "./routes.js",
+        "port": 80
+    },
+    "wait_on_parallel_send": true,
     "use_send_pings_on_start": true,
+    "send_pings_on_start_parallel_qty": 3,
     "send_pings_on_start_qty": 10000
 }

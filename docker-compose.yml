@@ -7,6 +7,8 @@ services:
     tty: true
     environment:
       NODE_ENV: production
+    ports:
+      - 3005:80
     depends_on:
       - mongo
   bot:
