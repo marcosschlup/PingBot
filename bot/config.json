@@ -1,7 +1,7 @@
 {
     "name": "BOT",
     "debug": false,
-    "api_host": "http://api",
+    "api_host": "http://api.domain",
     "api": {
         "routes": "./routes.js",
         "port": 80

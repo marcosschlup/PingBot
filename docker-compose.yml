@@ -21,6 +21,8 @@ services:
       - 3000:80
     depends_on:
       - api
+    links:
+      - api:api.domain
   mongo:
     container_name: mongo
     image: mongo    
